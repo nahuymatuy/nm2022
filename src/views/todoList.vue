@@ -1,36 +1,7 @@
 
 <template>
   <div class="about"> 
-    <Navbar></Navbar>
-
-    
-
-    <div v-if="showModal" class="fixed z-10 overflow-y-auto top-0 w-full left-0 " id="modal">
-      <div class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div class="fixed inset-0 transition-opacity">
-          <div class="absolute inset-0 bg-gray-900 opacity-75" />
-        </div>
-        <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
-        <div class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <label>Name</label>
-            <input type="text" class="w-full bg-gray-100 p-2 mt-2 mb-3" />
-            <label>Url</label>
-            <input type="text" class="w-full bg-gray-100 p-2 mt-2 mb-3" />
-          </div>
-          <div class="bg-gray-200 px-4 py-3 text-right">
-            <button type="button" 
-                    class="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2" 
-                    @click="showModal = false "><i class="fas fa-times"></i> Cancel</button>
-            <button type="button" 
-                    class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-gray-700 mr-2" 
-                    @click="showModal = false "><i class="fas fa-plus"></i> Done</button>
-             
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <Navbar></Navbar>  
     <div class="m-20">
       
       <div id="todo">
@@ -93,15 +64,7 @@ export default {
     return {
       showModal:false,
       todos: [], 
-      newTodo:{ text:"",},
-
-      tempDt: {
-        temp_key:"",
-        temp_text:"",
-        },
-      
-
-      currentDt:[],
+      newTodo:{ text:"",}, 
     };
   },
   methods: {  
@@ -119,13 +82,10 @@ export default {
               title: '更新成功',
               showConfirmButton: false,
               timer: 1500
-            });
-
-      // this.popup3sec();
+            }); 
     },
     // Remove child based on key - firebase function
-    removeTodo(key) { 
-
+    removeTodo(key) {  
       Swal.fire({
             title: '真的嗎?',
             text: "請確認是否移除資料!",
@@ -144,53 +104,8 @@ export default {
               ),
               WordDataServiceEXP.getAll().child(key).remove()
             }
-          })
-
-      
-    },
-    popupK(K) {
-        alert( "(K) = " +  JSON.parse(JSON.stringify(K)))
-    },
-
-    popup3sec(){
-
-      this.showModal=true;
-      this.timeout = setTimeout(function () {
-                // enter this block of code after 1 second
-                // handle stuff, call search API etc.
-                console.log('searching:');
-                // this.showModal=false;
-            }, 1000); 
-      ;
-      
-    },
-    // popup(todo.key,todo.text),
-    // trans(a,b) {
-
-    //     const data = {
-    //             text: b, 
-    //           };
-    //           this.tempDt = data;
-    // },
-    // popup(a ,b ) {
-
-        
-      
-    //     const data = {
-    //             text: this.tempDt.text, 
-    //           };
-
-    //       WordDataServiceEXP.update(this.tempDt.key, data)
-    //     .then(() => {
-    //       this.message = "更新成功!";
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-        
-
-    //     alert( "(a,b) = " +  a + b)
-    // },
+          }) 
+    }, 
     updateTutorial() {
       const data = {
         title: this.currentTutorial.title,
@@ -218,36 +133,22 @@ export default {
           });
         });
         this.todos = _tutorials; 
-    },
-
-        
-
+    },   
   },
   watch: {
-    // $('#modal').modal({
-    //   show: true
-    // }),
-    tutorial: function(tutorial) {
-      this.currentTutorial = { ...tutorial };
-      this.message = "";
-    },
+     
+    // tutorial: function(tutorial) {
+    //   this.currentTutorial = { ...tutorial };
+    //   this.message = "";
+    // },
   },
   mounted() {
     WordDataServiceEXP.getAll().on("value", this.onDataChange); 
-
-    delay(3000);
-    $('#overlay').modal('show');
-    
   },
   beforeDestroy() {
-    // WordDataServiceEXP.getAll().off("value", this.onDataChange);
+    WordDataServiceEXP.getAll().off("value", this.onDataChange);
   }
-};
-
-
-
-
-
+}; 
 
 </script>
 
