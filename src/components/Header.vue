@@ -6,16 +6,16 @@
             <div class="col-sm-12 col-md-6">
               <div class="header-content">
                 <h1 class="header-title">
-                  Cafe Shop
+                  教案查詢網站
                 </h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>嘉興＆義興 一同傳承，新竹尖石地區的泰雅文化，點點滴滴將記錄於此.</p>
                 <div class="header-btn mt-3">
                     <button @click="goabout" class="btn custom-btn btn-info mr-4">
-                        About
+                        進入教室
                     </button>
-                    <button @click="goproducts" class="btn custom-btn btn-outline-secondary">
-                      Products
-                    </button>
+                      <!-- <button @click="goproducts" class="btn custom-btn btn-outline-secondary">
+                        Products
+                      </button> -->
                 </div>
               </div>
             </div>
@@ -53,6 +53,6 @@ export default {
     width: 100%;
     min-height: 500px;
     text-align: left;
-    background-color:darkgoldenrod;
+    background-color:rgb(56, 115, 233);
   }
 </style>

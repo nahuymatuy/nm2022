@@ -8,15 +8,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <router-link to="/" class="nav-link">Home</router-link>
+              <router-link to="/" class="nav-link">首頁</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/wordList" class="nav-link">WordList</router-link>
+              <router-link to="/wordList" class="nav-link">校內.泰雅辭典</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/todoList" class="nav-link">To-DoList</router-link>
+              <router-link to="/todoList" class="nav-link">教案PDF.彙整區</router-link>
             </li>
-            
+            <!-- <li class="nav-item">
+              <router-link to="/imgList" class="nav-link">IMG-List</router-link>
+            </li> -->
+            <li class="nav-item">
+              <router-link to="/UpLoadFile" class="nav-link">檔案上傳</router-link>
+            </li>
+<!--             
             <li class="nav-item">
               <router-link to="/about" class="nav-link">About</router-link>
             </li>
@@ -28,15 +34,15 @@
             </li>
             <li class="nav-item">
               <router-link to="/stores" class="nav-link">Stores</router-link>
-            </li>
+            </li> -->
             <li class="nav-item" >
-              <a class="nav-link" @click="gomenber"><span>Member-Center</span></a>
+              <a class="nav-link" @click="gomenber"><span>會員中心</span></a>
             </li>
             </ul>
 
             <form class="form-inline my-2 my-lg-0">
-              <a class="btn btn-outline-success my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#login" v-show="isLogin == 'no'">Login/Register</a>
-              <a class="btn btn-outline-success my-2 my-sm-0" @click="logout()" v-show="isLogin == 'yes'">Log out</a>
+              <a class="btn btn-outline-success my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#login" v-show="isLogin == 'no'">登入/註冊</a>
+              <a class="btn btn-outline-success my-2 my-sm-0" @click="logout()" v-show="isLogin == 'yes'">登出</a>
             </form>
 
         </div>
@@ -111,7 +117,7 @@ export default {
     .navbar.custom-nav{
       padding-top:16px;
       padding-bottom:16px;
-      background-color: #7DA79D !important;
+      background-color: #d9d6b5 !important;
     }
    }
 </style>

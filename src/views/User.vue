@@ -8,7 +8,7 @@
               <div class="sidebar-content">
                   <!--sidebar-brand-->
                   <div class="sidebar-item sidebar-brand">
-                      <a href="#">VUE SHOP</a>
+                      <a href="#">會員中心</a>
                       <!--收合按鈕-->
                       <div id="close-sidebar" @click="closeMenu">
                           <i class="fas fa-times"></i>
@@ -20,12 +20,12 @@
                         <img class="img-responsive img-rounded"  src="/img/user.jpg" alt="User picture">
                     </div>
                       <div class="user-info">
-                          <span class="user-name">User</span>
-                          <span class="user-role">Email</span>
-                          <span class="user-status">
+                          <span class="user-name">使用者</span>
+                          <span class="user-role">信箱資訊</span>
+                          <!-- <span class="user-status">
                               <i class="fa fa-circle"></i>
                               <span>Online</span>
-                          </span>
+                          </span> -->
                       </div>
                   </div>
                   <!--sidebar-menu-->
@@ -34,13 +34,13 @@
                           <li class="header-menu">
                             <span>MEAU</span>
                           </li>
-                          <li>
+                           <!-- <li>
                             <router-link to="/user/profile">
                                 <i class="fa fa-user"></i>
                                 <span>Profile</span>
                             </router-link>
                           </li>
-                          <li>
+                         <li>
                             <router-link to="/user/orders">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Orders</span>
@@ -51,7 +51,7 @@
                                 <i class="fab fa-amazon"></i>
                                 <span>Manage Products</span>
                             </router-link>
-                          </li>
+                          </li> -->
                           <li>
                             <router-link to="/">
                                 <i class="fa fa-home"></i>
@@ -70,7 +70,10 @@
               </div>
           </nav>
           <!--page-content-->
+
+          
           <main class="page-content">
+              <a class="m-10 text-3xl">內部共享資源列表 建置中...</a>
              <router-view></router-view>
           </main>
           <!--page-content"-->

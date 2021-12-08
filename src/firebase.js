@@ -41,9 +41,11 @@ var firebaseConfig = {
   };
 
   // Initialize Firebase
+  
   const fb = firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const datab = firebase.database();
+  const fbst = firebase.storage();
   // const db_words = firebase.ref("/words");; 
   
-  export {fb,db,datab}
+  export {fb,db,datab,fbst,}

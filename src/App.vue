@@ -12,7 +12,8 @@
   font-family:'cwTeXYen', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #ffffff;
+  font-weight: bold;
 }
  
 #nav {
@@ -20,10 +21,10 @@
  
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #ffffff;
  
     &.router-link-exact-active {
-      color: #42b983;
+      color: #1d5cee;
     }
   }
 }

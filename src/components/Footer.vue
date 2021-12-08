@@ -4,10 +4,10 @@
             <div class="row p-5 h-100 justify-content-center align-items-center">
             <!--footer畫面左區-->
             <div class="col-sm-12 col-md-7">
-                <h3>Find Us</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h3>各校資源</h3>
+                <p>新竹尖石地區的 泰雅核心素養，逐漸成形，1L.2S.3T 將是我們重要的願景</p>
                 <button @click="gostores" class="btn custom-btn btn-outline-primary mr-4">
-                  Stores Information
+                  瞭解更多
                 </button>
             </div>
             <!--footer畫面右區-->

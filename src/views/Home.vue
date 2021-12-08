@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <Login></Login>
     <Header></Header>
-    <Banner></Banner>
+    <!-- <Banner></Banner> -->
     <Footer></Footer>
   </div>
 </template>

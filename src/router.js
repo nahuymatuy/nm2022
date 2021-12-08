@@ -33,16 +33,16 @@ const router =  new Router({
           name: "profile",
           component: Profile
         },
-        {
-          path: "orders",
-          name: "orders",
-          component: Orders
-        },
-        {
-          path: "Mproducts",
-          name: "Mproducts",
-          component: MProducts
-        },
+        // {
+        //   path: "orders",
+        //   name: "orders",
+        //   component: Orders
+        // },
+        // {
+        //   path: "Mproducts",
+        //   name: "Mproducts",
+        //   component: MProducts
+        // },
       ]
     },
     {
@@ -69,6 +69,7 @@ const router =  new Router({
       component: () =>
         import("./views/Stores.vue")
     },
+    
     {
       path: "/news",
       name: "news",
@@ -81,6 +82,21 @@ const router =  new Router({
       component: () =>
         import("./views/todoList.vue")
     },
+    {
+      path: "/imgList",
+      name: "imgList",
+      component: () =>
+        import("./views/imgList.vue")
+    },
+    {
+      path: "/UpLoadFile",
+      name: "UpLoadFile",
+      component: () =>
+        import("./views/UpLoadFile.vue")
+    },
+
+ 
+ 
   ]
 });
 
