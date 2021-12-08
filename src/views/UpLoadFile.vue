@@ -7,36 +7,30 @@
        
    <div class="row">
     <div class="col-12 text-center">
-      <h1 class="mb-3">Upload Image</h1>
+      <h1 class="mb-8">上傳資料</h1>
     </div>
-    <div class="col-md-5 offset-md-1">
-      <h5>1. single file {{ msg }} // {{ msg2 }}</h5>
-      <button class="text-gray-900 text-xl font-black 
+    <div class="col-md-8 offset-md-1">
+      <h5>單一檔案上傳 </h5>
+<!-- {{ msg }} // {{ msg2 }} -->
+      
+      <!-- <button class="text-gray-900 text-xl font-black 
                             m-1 px-1 py-0.5 rounded-full 
                             bg-green-500
                             hover:bg-blue-700 hover:text-gray-100  "
-                  @click="uploadFile">更新</button>   
+                  @click="uploadFile">更新</button>    -->
 
-                   <button class="text-gray-900 text-xl font-black 
-                            m-1 px-1 py-0.5 rounded-full 
-                            bg-green-500
-                            hover:bg-blue-700 hover:text-gray-100  "
-                  @click="d()">刪除</button>   
+                     
 
-                  <button class="text-gray-900 text-xl font-black 
+                  <!-- <button class="text-gray-900 text-xl font-black 
                             m-1 px-1 py-0.5 rounded-full 
                             bg-green-500
                             hover:bg-blue-700 hover:text-gray-100  "
-                  @click="g()">get</button>   
+                  @click="g()">get info</button>    -->
 
 
       <form>
-        <div class="form-group">
-
-
-
-
-          <label for="my-file">Select Image</label>
+        <div class="form-group"> 
+ 
           <input type="file" 
                  accept="image/*" 
                  @change="previewImage" 
@@ -44,7 +38,7 @@
                  id="my-file">
     
           <div class="border p-2 mt-3">
-            <p>Preview Here:</p>
+            <p>圖檔預覽:</p>
             <template v-if="preview">
               <img :src="preview" class="img-fluid" />
               <p class="mb-0">file name: {{ image.name }}</p>
@@ -53,6 +47,57 @@
           </div>
         </div>
       </form>
+
+     
+
+<div class="grid grid-cols-2 gap-1">
+  <div>
+    
+    <form v-on:submit.prevent="addTodo">
+      
+    <input type="text" 
+           v-model="newTodo.name" 
+           placeholder="已上傳檔案名稱"
+           class="px-10 m-3 py-2 rounded-full bg-gray-100 "
+           />   
+  </form> 
+  </div> 
+  <div>
+    <button class="text-lg text-gray-100 m-3 px-3 py-0.5 ml-4 rounded-full bg-red-400"
+            v-on:click="addTodo">確認新增</button>    
+            <button class="text-gray-900 text-xl font-black 
+                            m-3 px-3 py-0.5 ml-4 rounded-full 
+                            bg-green-500
+                            hover:bg-blue-700 hover:text-gray-100  "
+                  @click="d()"> 刪除上傳資料 </button> 
+  </div>
+</div>
+
+ <hr>
+已上傳內容：
+      <!-- <ul class="todo-list  "> -->
+        <ul class="todo-list  ">
+        <li v-for="todo in todos"
+            class="border-2 border-gray-200 rounded-full py-1 px-4 my-2" > 
+            檔案名稱：
+            <input type="text" 
+                    v-model="todo.name" 
+                    placeholder="Add new todo"
+                    class="px-10 m-3 py-2 rounded-full bg-gray-100 focus:ring-2 focus:ring-blue-600 "  />  
+       
+            <button class="text-ms font-blod text-gray-100 m-1 px-3 py-0.5 ml-4 rounded-full bg-red-400"
+                  @click="removeTodo(todo.key)">刪除</button>
+  
+            <button  class="text-ms font-blod text-gray-100 m-1 px-3 py-0.5 ml-4 rounded-full bg-blue-400"
+                              @click="ReadFile(todo.name)"> 前往</button>
+                   
+
+            <button class="bg-green-500 text-gray-900  text-ms font-blod 
+                          m-1 px-3 py-0.5 ml-4 rounded-full 
+                          hover:bg-green-700 hover:text-gray-100  "
+                  @click="updateTodo(todo.key,todo)">更新</button>   
+        </li> 
+      </ul> 
     </div>
     
     <!-- <div class="col-md-5">
@@ -100,6 +145,16 @@ export default {
   components: {   },
   data() {
     return {
+
+      showModal:false,
+      todos: [], 
+      UURL:"",
+      newTodo:{ 
+          name:"",
+          pxNote:"",
+          creatDateTime:"",
+          }, 
+
       preview: null,
       image: null,
       preview_list: [],
@@ -109,21 +164,25 @@ export default {
     };
   },
   methods: {
-    g(){
+    ReadFile(key){  
+      firebase.storage().ref(key).getDownloadURL().then(function(url) {
+          console.log(".ReadFile ==" + url);  
+          location.href=url;
+           
+         
+          
+      })
+    }
+    ,
+    g(){  // .ref 指向已存在 storage 中的檔案位置後 可以透過 getDownloadURL 取得連結
+          firebase.storage().ref(this.msg2).getDownloadURL().then(function(url) {
+          console.log(".url==" + url);  
+          let URL = url
 
-       
-      // .ref 指向已存在 storage 中的檔案位置後 可以透過 getDownloadURL 取得連結
-  firebase.storage().ref(this.msg2).getDownloadURL().then(function(url) {
-console.log(".url==" + url);
-       
-  });
-
-
-    },
-
-    d(){
-
-      firebase.storage().ref(this.msg2).delete();
+          this.UURL = URL;
+       });  
+    }, 
+    d(){  firebase.storage().ref(this.msg2).delete();
     },
     previewImage: function(event) {
       var input = event.target;
@@ -133,32 +192,29 @@ console.log(".url==" + url);
           console.log(".Done...00");
           this.preview = e.target.result;
           // 進行修改...
-          var blob = new Blob([e.target.result], { type: "image/jpeg" });
+          // var blob = new Blob([e.target.result], { type: "image/jpeg" });
           // var storageUrl = 'noticias/imagenes/';
           var storageUrl ='';
           var storageRef = firebase.storage().ref(storageUrl + input.files[0].name);
-          var storageRef2 = firebase.storage().ref(storageUrl + input.files[0]);
+          // var storageRef2 = firebase.storage().ref(storageUrl + input.files[0]);
           console.warn(input.files[0]); // Watch Screenshot
           storageRef.put(input.files[0]);
-          this.msg2 = storageUrl + input.files[0].name;
-
-          console.log(".msg2..." + this.msg2 );
- 
-          this.setTimeoutFun();
-
+          this.newTodo.name = storageUrl + input.files[0].name;
+          this.msg2 = storageUrl + input.files[0].name; 
+          console.log(".msg2..." + this.msg2 ); 
+          this.setTimeoutFun(); 
         };
         this.image=input.files[0];
-        reader.readAsDataURL(input.files[0]);
-
-console.log(".Done...2");
-          
-
- 
+        reader.readAsDataURL(input.files[0]); 
+        console.log(".Done...2");  
       }
     },
     setTimeoutFun() { 
       this.timeOutProcessId = setTimeout(() => {
         this.g();
+        
+        
+        // this.addTodo();
       }, 3000);
       // 在 三秒後 顯示
       // this.timeOutRefresh = window.setInterval(() => {
@@ -187,63 +243,76 @@ console.log(".Done...2");
       this.image_list = [];
       this.preview_list = [];
     },
-    uploadFile(){
-      //取得檔案資訊
-      // const file = event.target.files[0];
-
-      // 路徑包含檔案名稱給.ref指向正確位置
-      // this.image.name = file.name;
-
-      // 檔案名稱在下載時會用到
-      // name = file.name;
-console.log(".put() 方法把東西丟到該位置裡" + this.image.name);
-      // 取得 storage 中對應的位置
-      // const storageReference = firebase.storage().ref(fullPath);
-      // const storageReference = fb.storage().ref(this.image.name);
-
-
-      // const storageReference = WordDataServiceEXP.getST().ref(this.image.name);
-      
-      // 
-      // storageReference.put(this.image.name);
+    uploadFile(){ 
+      console.log(".put() 方法把東西丟到該位置裡" + this.image.name); 
       const path = "/demo/" + this.image.name;
-      WordDataServiceEXP.putST(path,this.image.name);
-      
-      console.log(".put() 方法把東西丟到該位置裡...."+ path);
-      // const task = storageReference.put(this.image.name);
-
-      // .on()監聽並連動 progress 讀取條
-      // task.on(
-      //   "state_changed",
-        // function progress(snapshot) {
-        //   let uploadValue = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-        //   uploader.value = uploadValue;
-        // },
-        // function error(err) {
-        //   this.msg.textContent = "上傳失敗";
-        // },
-      //   function complete() {
-      //     this.msg.textContent = "上傳成功";
-      //   }
-      // );
- 
- 
-  // .ref 指向已存在 storage 中的檔案位置後 可以透過 getDownloadURL 取得連結
-  // storageReference.getDownloadURL().then(function(url) {
-  //   this.msg2.textContent = "下載中" + url;});
-      
-
+      WordDataServiceEXP.putST(path,this.image.name); 
+      console.log(".put() 方法把東西丟到該位置裡...."+ path);  
     },
+    addTodo(){ 
+      
+      // this.newTodo.pxNote = this.msg2;
+      WordDataServiceEXP.create(this.newTodo)
+      this.newTodo.name = "";
+      this.newTodo.pxNote = "";
+    },
+    updateTodo(key, value) {
+      WordDataServiceEXP.getAll().child(key).update(value);
+      Swal.fire({
+              position: 'top',
+              icon: 'success',
+              title: '更新成功',
+              showConfirmButton: false,
+              timer: 1500
+            }); 
+    },
+    // Remove child based on key - firebase function
+    removeTodo(key) {  
+      Swal.fire({
+            title: '真的嗎?',
+            text: "請確認是否移除資料!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '執行刪除!',
+            cancelButtonText: '取消',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                '刪除成功!',
+                '你的資料，已完成刪除.',
+                'success'
+              ),
+              WordDataServiceEXP.getAll().child(key).remove()
+            }
+          }) 
+    }, 
+    onDataChange(items) {
+        let _tutorials = []; 
+
+        items.forEach((item) => {
+          let key = item.key;
+          let data = item.val();
+          _tutorials.push({
+            key: key, 
+            name  : data.name, 
+            pxNote:data.pxNote, 
+          });
+        });
+        this.todos = _tutorials; 
+    },  
+
   },
   watch: {
    
   },
-  // mounted() {
-  //   WordDataServiceEXP.getAll().on("value", this.onDataChange); 
-  // },
-  // beforeDestroy() {
-  //   WordDataServiceEXP.getAll().off("value", this.onDataChange);
-  // }
+  mounted() {
+    WordDataServiceEXP.getAll().on("value", this.onDataChange); 
+  },
+  beforeDestroy() {
+    WordDataServiceEXP.getAll().off("value", this.onDataChange);
+  }
 }; 
 
 </script>

@@ -2,7 +2,7 @@
 // const db_temp = firebase.ref("/words");
 import {fb,fbst} from '../firebase';
 
-const db_temp = fb.database().ref("/img"); 
+const db_temp = fb.database().ref("/Uploads"); 
 // import {fb, db} from '../firebase';
 // const db_temp = fb.ref("/words");
  

@@ -12,7 +12,7 @@
   font-family:'cwTeXYen', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #ffffff;
+  color: #343434;
   font-weight: bold;
 }
  

@@ -109,22 +109,13 @@ export default {
     };
   },
   methods: {
-    g(){
-
-       
+    g(){ 
       // .ref 指向已存在 storage 中的檔案位置後 可以透過 getDownloadURL 取得連結
-  firebase.storage().ref(this.msg2).getDownloadURL().then(function(url) {
-console.log(".url==" + url);
-       
-  });
-
-
-    },
-
-    d(){
-
-      firebase.storage().ref(this.msg2).delete();
-    },
+      firebase.storage().ref(this.msg2).getDownloadURL().then(function(url) {
+      console.log(".url==" + url); 
+        });  
+    }, 
+    d(){ firebase.storage().ref(this.msg2).delete(); },
     previewImage: function(event) {
       var input = event.target;
       if (input.files) {
