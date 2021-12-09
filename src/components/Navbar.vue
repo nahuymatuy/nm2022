@@ -11,17 +11,50 @@
               <router-link to="/" class="nav-link">首頁</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/wordList" class="nav-link">校內.泰雅辭典</router-link>
+              <router-link to="/wordList" class="nav-link">尖石.泰雅族語</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/todoList" class="nav-link">教案PDF.彙整區</router-link>
+              <router-link to="/wordList" class="nav-link">文化課程札記</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/todoList" class="nav-link">文化素養</router-link>
             </li>
             <!-- <li class="nav-item">
               <router-link to="/imgList" class="nav-link">IMG-List</router-link>
             </li> -->
             <li class="nav-item">
+              <router-link to="/UpLoadFile" class="nav-link">教案列表</router-link>
+            </li>
+
+            <li class="nav-item">
               <router-link to="/UpLoadFile" class="nav-link">檔案上傳</router-link>
             </li>
+
+            
+
+            <li class="nav-item"> 
+              <a
+                 href="https://www.facebook.com/Nahuy5841004"
+                class="bg-blue-500 hover:bg-blue-400 
+                       text-white font-bold py-2 px-2 mx-2
+                       border-b-4 border-blue-700 
+                       hover:border-blue-500 rounded">
+                        FaceBook.粉專
+              </a>
+            </li>
+
+            <li class="nav-item"> 
+              <a
+                 href="https://www.facebook.com/Nahuy5841004"
+                class="bg-yellow-500 hover:bg-yellow-400 
+                       text-black font-bold py-2 px-2 mx-2
+                       border-b-4 border-yellow-700 
+                       hover:border-yellow-500 rounded">
+                       尖石.泰雅實驗教育.成功專案
+              </a>
+            </li>
+
+            
 <!--             
             <li class="nav-item">
               <router-link to="/about" class="nav-link">About</router-link>
@@ -35,15 +68,15 @@
             <li class="nav-item">
               <router-link to="/stores" class="nav-link">Stores</router-link>
             </li> -->
-            <li class="nav-item" >
-              <a class="nav-link" @click="gomenber"><span>會員中心</span></a>
-            </li>
+            
             </ul>
 
             <form class="form-inline my-2 my-lg-0">
               <a class="btn btn-outline-success my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#login" v-show="isLogin == 'no'">登入/註冊</a>
               <a class="btn btn-outline-success my-2 my-sm-0" @click="logout()" v-show="isLogin == 'yes'">登出</a>
             </form>
+
+            <a class="nav-link" @click="gomenber"><span>會員中心</span></a>
 
         </div>
     </nav>

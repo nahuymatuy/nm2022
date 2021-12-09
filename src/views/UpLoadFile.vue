@@ -29,14 +29,18 @@
 
 
       <form>
-        <div class="form-group"> 
- 
-          <input type="file" 
+        <div class="form-group">  
+          <input type="file"  
+                 @change="previewImage" 
+                 class="form-control-file" 
+                 id="my-file">
+
+          <!-- <input type="file" 
                  accept="image/*" 
                  @change="previewImage" 
                  class="form-control-file" 
                  id="my-file">
-    
+     -->
           <div class="border p-2 mt-3">
             <p>圖檔預覽:</p>
             <template v-if="preview">
@@ -51,20 +55,49 @@
      
 
 <div class="grid grid-cols-2 gap-1">
-  <div>
-    
-    <form v-on:submit.prevent="addTodo">
-      
-    <input type="text" 
-           v-model="newTodo.name" 
-           placeholder="已上傳檔案名稱"
-           class="px-10 m-3 py-2 rounded-full bg-gray-100 "
-           />   
-  </form> 
+  <div> 
+    <form v-on:submit.prevent="addTodo"> 
+      <input type="text" 
+            v-model="newTodo.name" 
+            placeholder="已上傳檔案名稱"
+            class="px-10 m-1 py-2 rounded-full bg-gray-100 "
+            />   
+
+      <select class="bg-blue-600 m-1 p-2 text-white text-center rounded-xl" 
+              v-model="newTodo.grade" >
+        <option value="" disabled>請選擇年級</option>
+        <option v-for="grade in grades">{{ grade }}</option>
+      </select>
+
+      <select class="bg-blue-600 m-1 p-2 text-white text-center rounded-xl" 
+              v-model="newTodo.topic" >
+        <option value="" disabled>請選擇主題</option>
+        <option v-for="topic in topics">{{ topic }}</option>  
+      </select>
+
+      <select class="bg-blue-600 m-1 p-2 text-white text-center rounded-xl" 
+              v-model="newTodo.FileType" >
+        <option value="" disabled>請選擇資料類別</option>
+        <option v-for="FileType in FileTypes">{{ FileType }}</option>  
+      </select>
+
+      <select class="bg-blue-600 m-1 p-2 text-white text-center rounded-xl" 
+              v-model="newTodo.UseToken" >
+        <option value="" disabled>權限設定</option>
+        <option v-for="UseToken in UseTokens">{{ UseToken}}</option>  
+      </select>
+
+      <select class="bg-blue-600 m-1 p-2 text-white text-center rounded-xl" 
+              v-model="newTodo.DocType" >
+        <option value="" disabled>文件類別</option>
+        <option v-for="DocType in DocTypes">{{ DocType }}</option>  
+      </select>
+
+   </form> 
   </div> 
   <div>
     <button class="text-lg text-gray-100 m-3 px-3 py-0.5 ml-4 rounded-full bg-red-400"
-            v-on:click="addTodo">確認新增</button>    
+            v-on:click="addTodo()">確認新增</button>    
             <button class="text-gray-900 text-xl font-black 
                             m-3 px-3 py-0.5 ml-4 rounded-full 
                             bg-green-500
@@ -83,8 +116,20 @@
             <input type="text" 
                     v-model="todo.name" 
                     placeholder="Add new todo"
-                    class="px-10 m-3 py-2 rounded-full bg-gray-100 focus:ring-2 focus:ring-blue-600 "  />  
-       
+                    class="px-10 m-1 py-1 rounded-full bg-gray-100 focus:ring-2 focus:ring-blue-600 "  />  
+               
+             <!-- <select class="bg-blue-600 m-1 p-2 text-white text-center rounded-xl" 
+                     v-model="newTodo.grade" >
+              <option value="" disabled>請選擇年級</option>
+              <option v-for="grade in grades">{{ grade }}</option>
+            </select>
+
+            <select class="bg-blue-600 m-1 p-2 text-white text-center rounded-xl" 
+                    v-model="newTodo.topic" >
+              <option value="" disabled>請選擇主題</option>
+              <option v-for="topic in topics">{{ topic }}</option>  
+            </select> -->
+
             <button class="text-ms font-blod text-gray-100 m-1 px-3 py-0.5 ml-4 rounded-full bg-red-400"
                   @click="removeTodo(todo.key)">刪除</button>
   
@@ -119,19 +164,10 @@
           </div>
         </div>
       </form>
-    </div> -->
-    
-    
-   
+    </div> -->  
+   </div> 
   </div>
-  
-  </div>
-</div>
-    
-  
-  
-      
-  
+</div> 
 </template>
 
 
@@ -148,8 +184,23 @@ export default {
 
       showModal:false,
       todos: [], 
-      UURL:"",
-      newTodo:{ 
+      UURL:"",   
+ 
+      topics:    ['山林生態','燒墾','河流生態','入倉祭','收割祭','播種祭','祖靈祭','部落社會','遷徒史','建築','竹籐籐編','樂舞','播種祭','照顧小米','編織','狩獵',],
+      grades:    ['1年級', '2年級', '3年級','4年級', '5年級', '6年級'],
+      FileTypes: ['Youtube連結', '聲音檔', 'PDF文件','PPT投影片', '其他', '機密文件'],
+      UseTokens: ['限校內使用', '可開放校外', '正在編輯中', '封存停用'],
+      DocTypes:   ['教案','影片紀錄','計畫書','公用空白文件','教學札記','校內活動','校外比賽','校外參訪'],
+      
+      selected: '',
+
+      newTodo:{  
+          topic:"",
+          grade:"",
+          FileType:"",
+          UseToken:"",
+          Type:"",
+          DocType:"",
           name:"",
           pxNote:"",
           creatDateTime:"",
@@ -252,9 +303,20 @@ export default {
     addTodo(){ 
       
       // this.newTodo.pxNote = this.msg2;
-      WordDataServiceEXP.create(this.newTodo)
-      this.newTodo.name = "";
-      this.newTodo.pxNote = "";
+      WordDataServiceEXP.create(this.newTodo);
+
+      // 這邊是設定後 歸零。
+      // this.newTodo.name = "";
+      // this.newTodo.pxNote = "";
+      // this.newTodo.DocType = "";
+      // this.newTodo.grade = "";
+      Swal.fire({
+              position: 'top',
+              icon: 'success',
+              title: '更新成功',
+              showConfirmButton: false,
+              timer: 1500
+            }); 
     },
     updateTodo(key, value) {
       WordDataServiceEXP.getAll().child(key).update(value);
@@ -295,9 +357,13 @@ export default {
           let key = item.key;
           let data = item.val();
           _tutorials.push({
-            key: key, 
-            name  : data.name, 
-            pxNote:data.pxNote, 
+            key: key,  
+            name   : data.name, 
+            pxNote :data.pxNote, 
+
+            topic: data.topic,
+            grade: data.grade,   
+            DocType:data.DocType,
           });
         });
         this.todos = _tutorials; 

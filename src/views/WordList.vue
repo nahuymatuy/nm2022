@@ -10,6 +10,17 @@
       <div id="todo">
   <h2>尖石地區.泰雅詞語.對照表</h2>
    
+   <div class="tabs" v-cloack>
+    <ul>
+      <li v-for="(tab, index) in tabs" :class="{'is-active': show == index}"><a @click.prevent="show = index">{{tab.title}}</a></li>
+    </ul>
+
+  </div>
+  <div class="texts" v-cloack>
+    <transition-group name="fade-up" target="div" appear @click.native="navigate($event); alerts($event);">
+      <div v-for="(tab, index) in tabs" v-if="show == index" :key="index" v-html="tab.content"></div>
+    </transition-group>
+  </div>
 
 
 
@@ -21,7 +32,7 @@
   <div>
     <form v-on:submit.prevent="addTodo">
     <input type="text" 
-           v-model="newTodo.text" 
+           v-model="newTodo.spell_tayal" 
            placeholder="Add new todo"
            class="px-10 m-3 py-2 rounded-full bg-gray-100 "
            /> 
@@ -32,11 +43,10 @@
             v-on:click="addTodo">新增</button>    
   </div>
 </div>
-<div>
-       <!-- <div class="grid grid-cols-2 gap-1"> -->
-        <!-- </div> -->
-      <!-- {{ todos }} -->
-<!-- <div class="flex"> -->
+
+
+
+<div> 
       <div class="todo-list  ">
         <div v-for="todo in todos"
             class="border-1 border-gray-200 rounded-full 
@@ -92,11 +102,15 @@ export default {
   name: "tutorials-list",
   components: {   },
   data() {
-    return {
+    return { 
+      cars: ['Audi', 'BMW', 'Mercedes'],
+      selected: '',
+
+
       showModal:false,
       todos: [], 
       newTodo:{ 
-        text:"",
+        spell_tayal:"",
         },
 
       tempDt: {
@@ -107,10 +121,22 @@ export default {
     };
   },
   methods: {  
+    navigate: function(e){
+      if (e.target.dataset.show) {
+        e.preventDefault();
+        this.show = e.target.dataset.show;
+      }
+    },
+    alerts: function(e){
+      if (e.target.dataset.alert) {
+        e.preventDefault();
+        alert(e.target.dataset.alert);
+      }
+    },
      // Push new post in to Todos
     addTodo(){
       WordDataServiceEXP.create(this.newTodo)
-      this.newTodo.text = ''
+      this.newTodo.spell_tayal= '';
 
     },
     updateTodo(key, value) {
@@ -147,7 +173,7 @@ export default {
     }, 
     updateTutorial() {
       const data = {
-        title: this.currentTutorial.title,
+        spell_tayal: this.currentTutorial.spell_tayal,
         description: this.currentTutorial.description,
       };
 
@@ -201,7 +227,7 @@ export default {
     },
     topic_1: function() {
       return this.todos.filter(function(item) {
-        return item.NowPos == 1;
+        return item.description == '5大文化面向';
       })
     },
     poschker_2: function() {
@@ -240,7 +266,20 @@ export default {
 </script>
 
 <style scoped>
+.section {
+  padding: 2em 0;
+}
 
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.fade-up-enter,
+.fade-up-leave-to {
+  height: 0;
+  transform: translateY(30px);
+  opacity: 0;
+}
 
 </style>>
 
