@@ -5,8 +5,8 @@ import Home from "./views/Home.vue";
 import User from "./views/User.vue";
 
 import Profile from "./views/Profile.vue";
-import Orders from "./views/Orders.vue";
-import MProducts from "./views/MProducts.vue";
+// import Orders from "./views/Orders.vue";
+// import MProducts from "./views/MProducts.vue";
 
 import {fb} from './firebase'
 
@@ -88,15 +88,52 @@ const router =  new Router({
       component: () =>
         import("./views/imgList.vue")
     },
+    // {
+    //   path: "/UpLoadFile",
+    //   name: "UpLoadFile",
+    //   component: () =>
+    //     import("./views/UpLoadFile.vue")
+    // },
+    // {
+    //   path: "/UpLoadFile",
+    //   name: "UpLoadFile",
+    //   component: () =>
+    //     import("./views/FileZone.vue")
+    // },  
+    
     {
       path: "/UpLoadFile",
       name: "UpLoadFile",
       component: () =>
-        import("./views/UpLoadFile.vue")
+        import("./views/FileZone.vue"),
+      meta: { requiresAuth: true }, // 登入前須經過驗證
+      // User.vue的子分頁
+      children:[
+        {
+          path: "/FileNameRule",
+          name: "FileNameRule",
+          component: () =>
+            import("./views/FileNameRule.vue")
+        },
+        {
+          path: "/UpLoadFile",
+          name: "UpLoadFile",
+          component: () =>
+            import("./views/UpLoadFile.vue")
+        }, 
+ 
+        // {
+        //   path: "orders",
+        //   name: "orders",
+        //   component: Orders
+        // },
+        // {
+        //   path: "Mproducts",
+        //   name: "Mproducts",
+        //   component: MProducts
+        // },
+      ]
     },
-
- 
- 
   ]
 });
 

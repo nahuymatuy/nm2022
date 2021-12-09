@@ -1,8 +1,8 @@
 
 <template>
-  <div class="about"> 
-    <Navbar></Navbar>  
-    <div class="m-20">
+  <div class=""> 
+     
+    <div class="">
       
        
    <div class="row">

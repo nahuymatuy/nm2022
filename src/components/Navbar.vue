@@ -28,9 +28,7 @@
 
             <li class="nav-item">
               <router-link to="/UpLoadFile" class="nav-link">檔案上傳</router-link>
-            </li>
-
-            
+            </li> 
 
             <li class="nav-item"> 
               <a
@@ -51,6 +49,17 @@
                        border-b-4 border-yellow-700 
                        hover:border-yellow-500 rounded">
                        尖石.泰雅實驗教育.成功專案
+              </a>
+            </li>
+
+            <li class="nav-item"> 
+              <a
+                 href="http://songlaaa.xyz/"
+                class="bg-red-500 hover:bg-red-400 
+                       text-white font-bold py-2 px-2 mx-2
+                       border-b-4 border-red-700 
+                       hover:border-red-500 rounded">
+                       近期課表動態
               </a>
             </li>
 

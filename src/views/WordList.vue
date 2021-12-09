@@ -103,8 +103,7 @@ export default {
   components: {   },
   data() {
     return { 
-      cars: ['Audi', 'BMW', 'Mercedes'],
-      selected: '',
+      
 
 
       showModal:false,
