@@ -54,7 +54,7 @@
 
             <li class="nav-item"> 
               <a
-                 href="http://songlaaa.xyz/"
+                 href="https://www.nahuymatuy.com/about-me-2"
                 class="bg-red-500 hover:bg-red-400 
                        text-white font-bold py-2 px-2 mx-2
                        border-b-4 border-red-700 
