@@ -27,7 +27,7 @@
             </li>
 
             <li class="nav-item">
-              <router-link to="/UpLoadFile" class="nav-link">檔案上傳</router-link>
+              <router-link to="/FileZone" class="nav-link">檔案上傳</router-link>
             </li> 
 
             <li class="nav-item"> 

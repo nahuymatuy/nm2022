@@ -10,6 +10,12 @@
       <h1 class="mb-8">上傳資料</h1>
     </div>
     <div class="col-md-8 offset-md-1">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="User" name="first">User</el-tab-pane>
+          <el-tab-pane label="Config" name="second">Config</el-tab-pane>
+          <el-tab-pane label="Role" name="third">Role</el-tab-pane>
+          <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
+        </el-tabs>
       <h5>單一檔案上傳 </h5>
 <!-- {{ msg }} // {{ msg2 }} -->
       
@@ -181,6 +187,8 @@ export default {
   components: {   },
   data() {
     return {
+
+       activeName: 'first',
 
       showModal:false,
       todos: [], 

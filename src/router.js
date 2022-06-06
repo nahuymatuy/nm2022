@@ -94,33 +94,45 @@ const router =  new Router({
     //   component: () =>
     //     import("./views/UpLoadFile.vue")
     // },
+    {
+      path: "/FileZone",
+      name: "FileZone",
+      component: () =>
+        import("./views/FileZone.vue")
+    },  
+    {
+        path: "/FileNameRule",
+        name: "FileNameRule",
+        component: () =>
+          import("./views/FileNameRule.vue")
+      },
+      {
+        path: "/UpLoadFile",
+        name: "UpLoadFile",
+        component: () =>
+          import("./views/UpLoadFile.vue")
+      }, 
+    
     // {
     //   path: "/UpLoadFile",
     //   name: "UpLoadFile",
     //   component: () =>
-    //     import("./views/FileZone.vue")
-    // },  
-    
-    {
-      path: "/UpLoadFile",
-      name: "UpLoadFile",
-      component: () =>
-        import("./views/FileZone.vue"),
-      meta: { requiresAuth: true }, // 登入前須經過驗證
-      // User.vue的子分頁
-      children:[
-        {
-          path: "/FileNameRule",
-          name: "FileNameRule",
-          component: () =>
-            import("./views/FileNameRule.vue")
-        },
-        {
-          path: "/UpLoadFile",
-          name: "UpLoadFile",
-          component: () =>
-            import("./views/UpLoadFile.vue")
-        }, 
+    //     import("./views/FileZone.vue"),
+    //   meta: { requiresAuth: true }, // 登入前須經過驗證
+    //   // User.vue的子分頁
+    //   children:[
+    //     {
+    //       path: "/FileNameRule",
+    //       name: "FileNameRule",
+    //       component: () =>
+    //         import("./views/FileNameRule.vue")
+    //     },
+    //     {
+    //       path: "/UpLoadFile",
+    //       name: "UpLoadFile",
+    //       component: () =>
+    //         import("./views/UpLoadFile.vue")
+    //     }, 
  
         // {
         //   path: "orders",
@@ -132,8 +144,8 @@ const router =  new Router({
         //   name: "Mproducts",
         //   component: MProducts
         // },
-      ]
-    },
+    //   ]
+    // },
   ]
 });
 

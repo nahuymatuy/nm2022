@@ -41,12 +41,13 @@
                             </router-link>
                           </li>                    
                       </ul>
+                      
                   </div>
                   <!--sidebar-menu-->
               </div>
           </nav>
           <!--page-content--> 
-          <main class="page-content"> 
+          <main class="page-content">  
              <router-view></router-view>
           </main>
           <!--page-content"-->
@@ -55,6 +56,10 @@
   </div>
 </template>
  
+ <!-- import CSS -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
 import {fb, db} from '../firebase';
 
@@ -62,7 +67,8 @@ export default {
   name: 'user',
     data(){
     return{
-      email:null,
+      email:null, 
+      radio: 3
     }
   },
   
@@ -90,5 +96,12 @@ export default {
 }
 </script>
  
-<style scoped lang="scss">
+<style>
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
 </style>

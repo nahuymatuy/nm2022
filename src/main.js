@@ -16,6 +16,30 @@ window.Swal = Swal;
 
 Vue.config.productionTip = false;
 
+
+
+// 阿順新增系列 
+// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+// // Make BootstrapVue available throughout your project
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// Vue.use(BootstrapVue);
+// // Optionally install the BootstrapVue icon components plugin
+// Vue.use(IconsPlugin);
+// // Vue.use(VueTailwind, settings)
+
+// import Element from 'element-ui'
+
+// Vue.use(Element)
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
+// End -.-.- OK
+
+
 // 可於各檔案加入
 Vue.component('Navbar',require('./components/Navbar.vue').default);
 Vue.component('Login',require('./components/Login.vue').default);
@@ -25,7 +49,7 @@ let app = '';
 fb.auth().onAuthStateChanged(function(user) {
   if(!app){
     new Vue({
-      router,
+      router, 
       render: h => h(App)
     }).$mount("#app");
   }

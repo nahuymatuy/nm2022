@@ -9,6 +9,8 @@
                   教案查詢網站
                 </h1>
                 <p>嘉興＆義興 一同傳承，新竹尖石地區的泰雅文化，點點滴滴將記錄於此.</p>
+
+                
                 <div class="header-btn mt-3">
                     <button @click="goabout" class="btn custom-btn btn-info mr-4">
                         進入教室
